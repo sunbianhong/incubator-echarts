@@ -19,16 +19,19 @@
 */
 
 var _echarts = require("./lib/echarts");
-
+//确保抛出./lib/echarts定义的接口
 (function () {
   for (var key in _echarts) {
+    //.hasOwnProperty(prop)：判断对象自身是否有prop属性，而不是从原型链上继承的属性
+    //确保抛出./lib/echarts定义的接口：如果 没有echarts属性 || echarts没有key属性 || key是default || key是esModule 则返回
     if (_echarts == null || !_echarts.hasOwnProperty(key) || key === 'default' || key === '__esModule') return;
     exports[key] = _echarts[key];
   }
 })();
 
 var _export = require("./lib/export");
-
+//确保抛出./lib/export定义的接口
+//./lib/export导出zrender及echarts的工具项
 (function () {
   for (var key in _export) {
     if (_export == null || !_export.hasOwnProperty(key) || key === 'default' || key === '__esModule') return;
@@ -82,33 +85,31 @@ require("./lib/chart/sunburst");
 
 require("./lib/chart/custom");
 
-require("./lib/component/graphic");
-
 require("./lib/component/grid");
-
-require("./lib/component/legendScroll");
-
-require("./lib/component/tooltip");
-
-require("./lib/component/axisPointer");
 
 require("./lib/component/polar");
 
 require("./lib/component/geo");
 
-require("./lib/component/parallel");
-
 require("./lib/component/singleAxis");
 
-require("./lib/component/brush");
+require("./lib/component/parallel");
 
 require("./lib/component/calendar");
 
+require("./lib/component/graphic");
+
+require("./lib/component/toolbox");
+
+require("./lib/component/tooltip");
+
+require("./lib/component/axisPointer");
+
+require("./lib/component/brush");
+
 require("./lib/component/title");
 
-require("./lib/component/dataZoom");
-
-require("./lib/component/visualMap");
+require("./lib/component/timeline");
 
 require("./lib/component/markPoint");
 
@@ -116,9 +117,21 @@ require("./lib/component/markLine");
 
 require("./lib/component/markArea");
 
-require("./lib/component/timeline");
+require("./lib/component/legendScroll");
 
-require("./lib/component/toolbox");
+require("./lib/component/legend");
+
+require("./lib/component/dataZoom");
+
+require("./lib/component/dataZoomInside");
+
+require("./lib/component/dataZoomSlider");
+
+require("./lib/component/visualMap");
+
+require("./lib/component/visualMapContinuous");
+
+require("./lib/component/visualMapPiecewise");
 
 require("zrender/lib/vml/vml");
 
